@@ -1,5 +1,9 @@
-// gulp
+// Сборка Gulp:
+// Настройка gulp, настройка обрабодки html, scss, js, img
+// а так же server
 
+//Импорт пакетов для работы с gulp, gulp-html, gulp-scss и т.д.
+// gulp
 import gulp from 'gulp';
 import gulpIf from 'gulp-if';
 import browserSync from 'browser-sync';
@@ -23,7 +27,6 @@ import {
     stream as critical
 } from 'critical';
 
-
 //js
 import webpack from 'webpack-stream';
 import terser from 'gulp-terser';
@@ -33,11 +36,15 @@ import gulpImage from 'gulp-image';
 import gulpWebp from 'gulp-webp';
 import gulpAvif from 'gulp-avif';
 
-
+// Сборка по умолчанию false!
 let dev = false;
+// let prod = true; === !dev
 
+// Объек path с сохраненными путями до файлов:
 const path = {
+    // src - откуда берем файлы
     src: {
+        // base - основная папка от которой отталкиваемся
         base: 'src/',
         html: 'src/*.html',
         scss: 'src/scss/**/*.scss',
@@ -46,14 +53,15 @@ const path = {
         imgF: 'src/img/**/*.{jpg,jpeg,png}',
         assets: ['src/fonts/**/*.*', 'src/icons/**/*.*'],
     },
+    // dist - куда складываем файлы
     dist: {
         base: 'dist/',
         html: 'dist/',
         css: 'dist/css/',
         js: 'dist/js/',
         img: 'dist/img/',
-
     },
+    // watch - следит за несколькими файлами
     watch: {
         html: 'src/*.html',
         scss: 'src/scss/**/*.scss',
@@ -63,17 +71,27 @@ const path = {
     }
 };
 
-// Task HTML
+// TASK ...
+// task будет оброщаться к ядру gulp, и оттуда, с помощью метода src,
+// доставать файлы из обьекта pash!
+// task HTML
 export const html = () => gulp
     .src(path.src.html)
+    // .pipe - передает полученный файл в колбэк функцию
+    // gulpIf - определяет - сейчас dev-сборка или нет
+    // htmlMin - обрабатывает html с помощью настроек
     .pipe(gulpIf(!dev, htmlMin({
+        // removeComments - убирет кмментарии
         removeComments: true,
+        // collapseWhitespace - убирает не нужные пробелы и переносы строк
         collapseWhitespace: true,
     })))
+    // с помощью команды gulp.dest - ложим html в path.dist.html
     .pipe(gulp.dest(path.dist.html))
+    // browserSync.stream - используется для внесения изменений без обновления страницы
     .pipe(browserSync.stream());
 
-// SCSS
+// task SCSS
 export const scss = () => gulp
     .src(path.src.scss)
     .pipe(gulpIf(dev, sourcemaps.init()))
@@ -94,7 +112,7 @@ export const scss = () => gulp
     .pipe(browserSync.stream());
 
 
-// JS
+// task JS
 const configWebpack = {
     mode: dev ? 'development' : 'production',
     devtool: dev ? 'eval-source-map' : false,
@@ -134,7 +152,7 @@ export const js = () => gulp
     .pipe(gulp.dest(path.dist.js))
     .pipe(browserSync.stream());
 
-// IMAGES
+// task IMAGES
 const image = () => gulp
     .src(path.src.img)
     .pipe(gulpIf(!dev, gulpImage({
@@ -184,18 +202,22 @@ export const copy = () => gulp
     })
     );
 
-//server
+// Настройка server
 export const server = () => {
     browserSync.init({
+        // отлючение ui
         ui: false,
+        // отключение уведомлений
         notify: false,
         host: 'localhost',
+        // показывает проект в интернете на временном хостинге
         //tunnel: true,
         server: {
             baseDir: path.dist.base,
         }
     });
 
+    //gulp.watch отслеживает файлы path и после изминения в них, вызывает Task
     gulp.watch(path.watch.html, html);
     gulp.watch(path.watch.scss, scss);
     gulp.watch(path.watch.js, js);
@@ -208,12 +230,15 @@ export const server = () => {
 const clear = () => del(path.dist.base, {
     force: true,
 })
-
+// develop - принимает действие и возврощает ready
 const develop = (ready) => {
     dev = true;
     ready();
 };
 
+// gulp.parallel запускает несколько task
 export const base = gulp.parallel(html, scss, js, image, avif, webp, copy);
+// build - очищает папку dist  и затем запускает base
 export const build = gulp.series(clear, base);
+// с начала запуститься develop-режим, потом base, затем server
 export default gulp.series(develop, base, server);
