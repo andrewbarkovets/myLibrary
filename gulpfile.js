@@ -227,7 +227,7 @@ export const server = () => {
 };
 
 // функция очищает папку dist
-const clear = () => del(path.dist.base, {
+export const clear = () => del(path.dist.base, {
     force: true,
 })
 // develop - принимает действие и возврощает ready
