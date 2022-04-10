@@ -1,0 +1,43 @@
+.library {
+    &__header {
+        margin-bottom: 15px;
+    }
+
+    &__titles {
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: 26;
+        line-height: 32px;
+        margin-bottom: 8px;
+    }
+
+    &__count {
+        font-size: 14px;
+        line-height: 120%;
+        color: $secondary;
+        margin-bottom: 25px;
+    }
+
+    &__list-content {
+        @media (max-width: 375px) {
+            padding: 0 12px;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px 26px;
+    }
+
+    &__add-btn {
+        background-color: transparent;
+        border: 0;
+        width: 44px;
+        height: 44px;
+        color: $primary;
+    }
+}

@@ -1,3 +1,17 @@
+// Colors
+$black: #000000;
+$white: #ffffff;
+
+$black18: #181818;
+
+$primary: #F87C09;
+$primaryLight: #FF922E;
+$primaryDark: #EAEAEA;
+
+$secondary: #AEAAAA;
+$secondaryDark: #6B6B6B;
+
+// Fonts
 @mixin font($name, $weight) {
     @font-face {
         font: {

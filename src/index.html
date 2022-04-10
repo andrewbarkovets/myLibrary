@@ -9,25 +9,25 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/index.min.css">
     <!-- JS -->
-    <script src="js/index.min.js"></script>
+    <script src="js/index.min.js" defer></script>
 </head>
 
 <body>
     <!-- Library -->
     <section class="library">
-        <header class="header">
+        <header class="header library__header">
 
-            <div class="container">
-                <img src="img/logo.svg" alt="Логотип Big Brother">
+            <div class="container header__container">
+                <img src="img/logo.svg" class="header__logo" alt="Логотип Big Brother" width="61" height="41">
                 <button class="header__btn-add"></button>
-                <button class="header__btn header__btn-search"></button>
+                <button class="header__btn header__btn_search"></button>
             </div>
 
         </header>
 
         <div class="container library__titles">
             <h1 class="library__title">Моя библиотека</h1>
-            <p>3 книги</p>
+            <p class="library__count">3 книги</p>
             <div class="library__fields fields">
                 <div class="fields__block">
                     <button class="fields__btn fields__btn_sort">
@@ -90,7 +90,7 @@
             <h2 class="visually-hidden">Список книг</h2>
             <ul class="library__list">
                 <li class="library__item">
-                    <a href="/book">
+                    <a href="/book" data-navigo>
                         <article class="cart">
                             <div class="cart__wrapper">
                                 <img src="img/book1.jpg" alt="Обложка книги 1984" class="cart__image">
@@ -119,7 +119,7 @@
                     </a>
                 </li>
                 <li class="library__item">
-                    <a href="/book">
+                    <a href="/book" data-navigo>
                         <article class="cart">
                             <div class="cart__wrapper">
                                 <img src="img/book2.jpg" alt="Обложка книги 1984" class="cart__image">
@@ -151,24 +151,41 @@
         </div>
 
         <footer class="footer">
-            <button class="footer__btn library__add-btn" aria-label="Добавить книгу"></button>
+            <button class="footer__btn library__add-btn" aria-label="Добавить книгу">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22" cy="22" r="22" fill="currentColor" />
+                    <rect x="21.7767" y="9.21667" width="0.433333" height="25.5667" fill="#242424" stroke="white"
+                        stroke-width="0.433333" />
+                    <rect x="9.21667" y="22.2233" width="0.433333" height="25.5667"
+                        transform="rotate(-90 9.21667 22.2233)" fill="#242424" stroke="white" stroke-width="0.433333" />
+                </svg>
+            </button>
         </footer>
 
     </section>
     <!-- Book -->
-    <section class="book">
+    <section class="book hidden">
 
         <header class="header book__header">
-            <div class="container">
-                <button class="header__btn header__btn_back">назад</button>
-                <button class="header__btn header__btn_del">удалить</button>
+            <div class="container header__container">
+                <button class="header__btn header__btn_back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white" />
+                    </svg>
+                </button>
+                <button class="header__btn header__btn_del">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"
+                            fill="#EAEAEA" />
+                    </svg>
+                </button>
             </div>
         </header>
 
         <div class="container book-container">
             <div class="book__wrapper">
                 <img src="img/book2.jpg" alt="Обложка книги 1984" class="book__image">
-                <button class="book__label">хоче прочитать</button>
             </div>
             <div class="book__content">
                 <h2 class="book__title">
@@ -205,15 +222,23 @@
         </footer>
 
     </section>
-
     <!-- Add -->
-    <section class="add">
+    <section class="add hidden">
         <header class="header add__header">
 
-            <div class="container">
-                <h2 class="visually-hidden">Добавление книги</h2>
-                <button class="header__btn header__btn_back">назад</button>
-                <button class="header__btn header__btn_del">удалить</button>
+            <div class="container header__container">
+                <button class="header__btn header__btn_back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white" />
+                    </svg>
+                </button>
+                <button class="header__btn header__btn_del">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"
+                            fill="#EAEAEA" />
+                    </svg>
+                </button>
             </div>
 
             <!-- Form -->

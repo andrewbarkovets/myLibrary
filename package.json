@@ -22,7 +22,7 @@
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
-    "gulp-avif": "^1.0.1",
+    "gulp-avif": "^1.1.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-htmlmin": "^5.0.1",
@@ -37,5 +37,8 @@
     "sass": "^1.49.11",
     "webpack": "^5.71.0",
     "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "navigo": "^8.11.1"
   }
 }
