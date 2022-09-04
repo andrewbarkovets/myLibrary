@@ -1,7 +1,7 @@
 html {
     position: relative;
     box-sizing: border-box;
-    min-width: 360px;
+    min-width: 320px;
 }
 
 *,
@@ -71,8 +71,20 @@ fieldset {
     max-width: 1100px;
     padding: 0 20px;
     margin: 0 auto;
+
+    @include tablet {
+        padding: 0 35px;
+    }
+
+    @include laptop {
+        padding: 0 45px;
+    }
 }
 
 .hidden {
     display: none;
+}
+
+section {
+    padding-bottom: 80px;
 }

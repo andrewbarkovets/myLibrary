@@ -8,4 +8,10 @@
     align-items: center;
     background-color: black;
 
+    @media (max-height: 500px) {
+        width: auto;
+        right: 0;
+        padding: 20px;
+        background-color: transparent;
+    }
 }

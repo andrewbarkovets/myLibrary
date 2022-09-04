@@ -11,6 +11,26 @@ $primaryDark: #EAEAEA;
 $secondary: #AEAAAA;
 $secondaryDark: #6B6B6B;
 
+// Mixin
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+
 // Fonts
 @mixin font($name, $weight) {
     @font-face {

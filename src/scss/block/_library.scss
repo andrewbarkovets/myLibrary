@@ -1,6 +1,24 @@
 .library {
     &__header {
+        position: relative;
         margin-bottom: 15px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 174px;
+            height: 174px;
+            left: -46px;
+            top: -55px;
+            background-color: #FF0000;
+            filter: blur(200px);
+            z-index: 1;
+
+            @include tablet {
+                content: none;
+            }
+        }
     }
 
     &__titles {
